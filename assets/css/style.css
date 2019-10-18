@@ -1,0 +1,23 @@
+body {
+    height: 100%;
+    margin: 0;
+    background: url(../images/background.jpg);
+    color: white;
+    line-height: 5;
+}
+
+.main {
+    background: #555;
+    border: 1px solid #777;
+}
+
+.answers:hover {
+    background: #999;
+    border: 1px solid #777;
+    cursor: pointer;
+}
+
+.result {
+    font-weight: bold;
+    font-size: 24px;
+}
