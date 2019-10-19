@@ -9,59 +9,69 @@ $(document).ready(function () {
     //Global variable for counting what question we're on
     let q = 0;
 
-
+    //Array to hold objects with question, answers, and image
     let questionArray = [
         q1 = {
-            question: "what is 1+1",
-            correct: "2",
-            incorrect: ["1", "3", "0"]
+            question: "How old is the universe?",
+            correct: "13.8 Billion Years",
+            incorrect: ["6000 Years", "10 Million Years", "1 Billion Years"],
+            image: "assets/images/universe.jpg"
         },
 
         q2 = {
-            question: "what is the capitol of florida",
-            correct: "tallahassee",
-            incorrect: ["tampa", "orlando", "miami"]
+            question: "How many planets are in our Solar System? (Sorry Pluto)",
+            correct: "8",
+            incorrect: ["9", "5", "12"],
+            image: "assets/images/planets.jpg"
         },
 
         q3 = {
-            question: "how many states are there",
-            correct: "50",
-            incorrect: ["39", "69", "100"]
+            question: "What has a gravitational pull so strong that even light cannot escape it?",
+            correct: "A Black Hole",
+            incorrect: ["The Sun", "The Moon", "Earth's Core"],
+            image: "assets/images/blackhole.jpg"
         },
         q4 = {
-            question: "best nba player",
-            correct: "lebron james",
-            incorrect: ["babe ruth", "joe", "bob"]
+            question: "What is the cosmic speedlimit?",
+            correct: "The Speed Of Light",
+            incorrect: ["The Speed Of Sound", "There Is None", "The Force Of Gravity"],
+            image: "assets/images/light.jpg"
         },
         q5 = {
-            question: "asdsadsad",
-            correct: "correct",
-            incorrect: ["wqewq", "qewq", "qweqewqeq"]
+            question: "Who came up with the Theory of Relativity?",
+            correct: "Einstein",
+            incorrect: ["Newton", "Euler", "Kepler"],
+            image: "assets/images/einstein.jpg"
         },
         q6 = {
-            question: "asuhhhhh",
-            correct: "dude",
-            incorrect: ["bro", "mom", "dad"]
+            question: "Who came up with the Theory of Gravity?",
+            correct: "Newton",
+            incorrect: ["Planck", "Galileo", "Steve Jobs"],
+            image: "assets/images/newton.jpg"
         },
         q7 = {
-            question: "you are the",
-            correct: "language",
-            incorrect: ["poop", "butt", "fart"]
+            question: "What event is theorized to have created our universe?",
+            correct: "The Big Bang",
+            incorrect: ["The Matrix", "Supernova Explosion", "Quantum Entanglement"],
+            image: "assets/images/bigbang.jpg"
         },
         q8 = {
-            question: "what color is the sun",
-            correct: "red",
-            incorrect: ["blue", "magenta", "black"]
+            question: "What is the name of our galaxy?",
+            correct: "The Milky Way",
+            incorrect: ["The Big Dipper", "Snickers Bar", "The Best Galaxy"],
+            image: "assets/images/milkyway.jpg"
         },
         q9 = {
-            question: "this is how u",
-            correct: "remind me",
-            incorrect: ["poop", "eat", "dance"]
+            question: "What is the largest planet in our Solar System?",
+            correct: "Jupiter",
+            incorrect: ["Saturn", "Earth", "Pluto"],
+            image: "assets/images/jupiter.jpg"
         },
         q10 = {
-            question: "who is coolest",
-            correct: "satan",
-            incorrect: ["god", "me", "you"]
+            question: "Is the Earth flat?",
+            correct: "No",
+            incorrect: ["Yes", "Absolutely", "Science isn't real"],
+            image: "assets/images/flatearth.jpg"
         }
 
     ];
@@ -83,13 +93,15 @@ $(document).ready(function () {
         if (choice === questionArray[q].correct) {
             $(".prompt").empty();
             $(".result").text("Correct!");
+            $(".image").html(`<img id="displayImage" src="${questionArray[q].image}" />`)
             correctGuesses++;
-            setTimeout(showQuestion, 2000);
+            setTimeout(showQuestion, 5000);
         } else {
             $(".prompt").empty();
-            $(".result").text(`Wrong! The correct answer was ${questionArray[q].correct}.`);
+            $(".result").html(`Wrong! The correct answer was <br>${questionArray[q].correct}.`);
+            $(".image").html(`<img id="displayImage" src="${questionArray[q].image}" />`)
             wrongGuesses++;
-            setTimeout(showQuestion, 2000);
+            setTimeout(showQuestion, 5000);
         }
         q++;
     });
@@ -103,10 +115,10 @@ $(document).ready(function () {
         if (timer < 0) {
             clearInterval(intervalId);
             $(".prompt").empty();
-            $(".result").text(`You ran out of time! The correct answer was ${questionArray[q].correct}.`);
+            $(".result").html(`You ran out of time! The correct answer was <br>${questionArray[q].correct}.`);
             unAnswered++;
             q++;
-            setTimeout(showQuestion, 2000);
+            setTimeout(showQuestion, 5000);
         }
 
     }
@@ -117,6 +129,7 @@ $(document).ready(function () {
         if (q < questionArray.length) {
             timer = 10;
             $(".result").text("");
+            $(".image").text("");
             intervalId = setInterval(questionTimer, 1000);
             let newDiv = $("<div class='prompt'>");
             let questionSlot = $("<div id='question'>").text(questionArray[q].question);
@@ -135,15 +148,17 @@ $(document).ready(function () {
         }
     }
 
+    //Function to remove timer and prompts and display final results
     function endGame() {
         clearInterval(intervalId);
         $(".timer").empty();
         $(".prompt").empty();
+        $(".image").empty();
         $(".result").html(`Final Results<br>
                             Correct Guesses: ${correctGuesses}<br>
                             Wrong Guesses: ${wrongGuesses}<br>
                             Unanswered: ${unAnswered}`);
-        
+
     }
 
 
