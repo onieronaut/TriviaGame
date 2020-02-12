@@ -1,6 +1,18 @@
 # TriviaGame
 
-A jQuery game created during UCF's web development bootcamp
+https://onieronaut.github.io/TriviaGame/
+
+## About
+
+A a front-end Javsascript game created during UCF's web development bootcamp.
+
+## Built With
+
+* Javascript
+* jQuery
+* HTML
+* CSS
+* Bootstrap
 
 ## How To Play
 
